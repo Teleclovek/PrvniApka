@@ -1,0 +1,78 @@
+<Frame>
+    background_color: 0.4, 0.6, 0.2, 0.5
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+
+
+<Activeframe>
+    background_color: 0.6, 0.2, 0.4, 0.5
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Line:
+            width: 2
+            rectangle: self.x, self.y, self.width, self.height
+
+
+
+
+<PausedButton>
+    size_hint: (1, 1)
+    background_color: 0,0,0,0.6
+
+
+
+<NextButton>:
+    id: "stred"
+    text: "NEXT"
+    name: "midButt"
+    size_hint: (0.3, 0.3)
+    pos_hint: {"center_x": 0.5, "center_y": 0.55}
+
+
+<FirstButton>
+    text: "POCET"
+    name: "firstButt"
+    size_hint: (0.2, 0.2)
+    pos_hint: {"center_x": 0.5, "center_y": 0.8}
+
+<GoButton>
+    text: "GO"
+    name: "goButt"
+    size_hint: (0.2, 0.1)
+    pos_hint: {"center_x": 0.5, "center_y": 0.3}
+
+<PassButton>
+    text: "PASS"
+    name: "playersButt"
+    size_hint: (0.3, 0.15)
+    pos_hint: {"center_x": 0.5, "center_y": 0.90}
+
+<Label>
+    color: 0.3,0.3,0.3,1
+    bold: True
+    font_size: 35
+
+<TimeLabelLeft>
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: 90
+            origin: self.center
+    canvas.after:
+        PopMatrix
+
+
+<TimeLabelRight>
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: 270
+            origin: self.center
+    canvas.after:
+        PopMatrix
