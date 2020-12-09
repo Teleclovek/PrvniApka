@@ -15,8 +15,10 @@ timesContainer = []
 for i in range (5):
     timesContainer.append(lastPress - lastPress)
 rotation = 0
-positonsy = [0.55, 0.85, 0.85, 0.55, 0.25]
-positonsx = [0.2, 0.2, 0.8, 0.8, 0.5]
+positonsy = [0.55, 0.85, 0.85, 0.55, 0.1]
+positonsx = [0.1, 0.1, 0.9, 0.9, 0.5]
+positonsyPass = [0.55, 0.85, 0.85, 0.55, 0.2]
+positonsxPass = [0.3, 0.3, 0.7, 0.7, 0.5]
 passedPlayers = []
 playersAmount = 0
 passLabels = []
@@ -71,6 +73,7 @@ class TimerApp(App):
                 begin()
                 layout.remove_widget(firstButton)
                 layout.remove_widget(goButton)
+                layout.remove_widget(number)
                 global firstOfRound
                 global rotation
                 rotation = firstOfRound = random.choice(range(playersAmount))
@@ -143,7 +146,13 @@ class TimerApp(App):
                 layout.add_widget(timerContainer[rotation])
                 lastPress = timeWhenPressed
                 passedPlayers[rotation] = True
-                passLabels[rotation] = Label(text="PASS", pos_hint={"center_x": positonsx[rotation], "center_y": positonsy[rotation] - 0.15 })
+                if rotation < 2:
+                    passLabels[rotation] = TimeLabelRight(text="PASS", pos_hint={"center_x": positonsxPass[rotation], "center_y": positonsyPass[rotation]})
+                elif rotation == 4:
+                    passLabels[rotation] = Label(text="PASS", pos_hint={"center_x": positonsxPass[rotation], "center_y": positonsyPass[rotation]})
+                else:
+                    passLabels[rotation] = TimeLabelLeft(text="PASS", pos_hint={"center_x": positonsxPass[rotation], "center_y": positonsyPass[rotation]})
+
                 layout.add_widget(passLabels[rotation])
                 print("Rotation v Pass " + str(rotation))
                 rotation += 1
@@ -193,11 +202,11 @@ class TimerApp(App):
             layout.add_widget(nextButton)
             layout.add_widget(passButton)
             for i in range(playersAmount):
-                firstFrame = Frame(text="", size_hint=(0.2, 0.2),
+                firstFrame = Frame(text="", size_hint=(0.17, 0.28),
                                    pos_hint={"center_x": positonsx[i], "center_y": positonsy[i]})
                 framesContainer.append(firstFrame)
 
-                activeFrame = ActiveFrame(text="", size_hint=(0.2, 0.2),
+                activeFrame = ActiveFrame(text="", size_hint=(0.17, 0.28),
                                    pos_hint={"center_x": positonsx[i], "center_y": positonsy[i]})
                 activeFramesContainer.append(activeFrame)
 
